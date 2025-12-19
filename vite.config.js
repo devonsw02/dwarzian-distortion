@@ -8,7 +8,7 @@ export default defineConfig({
      * This ensures that paths look like "assets/logo.png" instead of "/assets/logo.png"
      * It is the most compatible setting for GitHub Pages sub-folders.
      */
-    base: './',
+    base: '/dwarzian-distortion/',
 
     plugins: [
         vue()
