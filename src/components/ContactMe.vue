@@ -1,12 +1,12 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import NavBar from '../views/NavBar.vue';
 
-// --- ASSET RESOLUTION ---
-// Images are in /public/images/ so we use direct absolute paths
+// --- ASSET RESOLUTION FIX ---
+// This uses the BASE_URL from your vite.config.js to find the /public folder
 const getImageUrl = (filename) => {
   if (!filename) return '';
-  return `/images/${filename}`;
+  // import.meta.env.BASE_URL will be "/dwarzian-distortion/" on GitHub
+  return `${import.meta.env.BASE_URL}images/${filename}`;
 };
 
 // --- CATEGORY DATA ---
@@ -106,8 +106,6 @@ const toggleCard = (id) => {
 
 <template>
   <div class="contact-page">
-    <NavBar />
-
     <section class="champions-hero">
       <div class="hero-copy">
         <h1>MEET YOUR<br />CHAMPIONS!</h1>
@@ -121,7 +119,7 @@ const toggleCard = (id) => {
               <img :src="getImageUrl(activeHeroCard.image)" :alt="activeHeroCard.title" />
             </div>
             <div class="card-face flip-card-back">
-              <img src="/images/backside.png" alt="backside" />
+              <img :src="getImageUrl('backside.png')" alt="backside" />
             </div>
           </div>
         </div>
@@ -148,7 +146,7 @@ const toggleCard = (id) => {
                 <img :src="getImageUrl(card.image)" :alt="card.title" loading="lazy" />
               </div>
               <div class="card-face flip-card-back">
-                <img src="/images/backside.png" alt="backside" loading="lazy" />
+                <img :src="getImageUrl('backside.png')" alt="backside" loading="lazy" />
               </div>
             </div>
           </article>
@@ -159,111 +157,22 @@ const toggleCard = (id) => {
 </template>
 
 <style scoped>
-.contact-page {
-  width: 100%;
-  color: white;
-  font-family: masonic-lodge, serif;
-  overflow-x: hidden;
-}
-
-/* HERO SECTION */
-.champions-hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 8rem 8vw;
-  align-items: center;
-  gap: 4rem;
-}
-
-/* ⭐️ HERO SIZE: DOUBLED ⭐️ */
-.hero-card {
-  width: 400px;
-  height: 600px;
-  margin: 0 auto;
-  animation: floatAnimation 4s ease-in-out infinite;
-}
-
-.hero-card-label h3 {
-  text-align: center;
-  margin-top: 1.5rem;
-  font-size: 2.5rem;
-  color: #f7941d;
-}
-
-/* CARD ROWS */
-.card-rows {
-  padding: 0 8vw 10rem 8vw;
-}
-
-.card-row {
-  margin-bottom: 6rem;
-}
-
-.row-title {
-  font-size: 2.5rem;
-  color: #f7941d;
-  border-bottom: 1px solid #333;
-  margin-bottom: 3rem;
-  text-transform: uppercase;
-}
-
-/* ⭐️ GRID SIZING ⭐️ */
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 200px));
-  gap: 3rem;
-  justify-content: center;
-}
-
-/* STANDARD CARD SIZE */
-.card {
-  width: 200px;
-  height: 300px;
-  cursor: pointer;
-  position: relative;
-}
-
-/* FLIP EFFECT */
+/* (Existing styles remain the same) */
+.contact-page { width: 100%; color: white; font-family: masonic-lodge, serif; overflow-x: hidden; background-color: #0a0a0a;}
+.champions-hero { display: grid; grid-template-columns: 1fr 1fr; padding: 8rem 8vw; align-items: center; gap: 4rem; }
+.hero-card { width: 400px; height: 600px; margin: 0 auto; animation: floatAnimation 4s ease-in-out infinite; }
+.hero-card-label h3 { text-align: center; margin-top: 1.5rem; font-size: 2.5rem; color: #f7941d; }
+.card-rows { padding: 0 8vw 10rem 8vw; }
+.card-row { margin-bottom: 6rem; }
+.row-title { font-size: 2.5rem; color: #f7941d; border-bottom: 1px solid #333; margin-bottom: 3rem; text-transform: uppercase; }
+.cards-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 200px)); gap: 3rem; justify-content: center; }
+.card { width: 200px; height: 300px; cursor: pointer; position: relative; }
 .flip-card { perspective: 1200px; }
-.flip-card-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease;
-}
+.flip-card-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.6s ease; }
 .flipped .flip-card-inner { transform: rotateY(180deg); }
-
-/* ⭐️ FILL BUT FIT LOGIC ⭐️ */
-
-.card-face {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 12px;
-  overflow: hidden; /* Clips image edges to rounded corners */
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
-
-.card-face img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Forces image to fill entire 200x300 space */
-  display: block;
-}
-
+.card-face { position: absolute; inset: 0; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+.card-face img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .flip-card-back { transform: rotateY(180deg); }
-
-@keyframes floatAnimation {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-30px); }
-}
-
-@media (max-width: 900px) {
-  .champions-hero { grid-template-columns: 1fr; text-align: center; }
-  .hero-card { width: 300px; height: 450px; }
-  .cards-container { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-}
+@keyframes floatAnimation { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+@media (max-width: 900px) { .champions-hero { grid-template-columns: 1fr; text-align: center; } .hero-card { width: 300px; height: 450px; } .cards-container { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
 </style>
