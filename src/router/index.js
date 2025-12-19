@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
+// 1. Change createWebHistory to createWebHashHistory
+import { createRouter, createWebHashHistory } from 'vue-router'
 import HomePage from '@/components/HomePage.vue'
 import ContactMe from '@/components/ContactMe.vue'
 import AboutMe from '@/components/AboutMe.vue'
@@ -6,7 +7,8 @@ import ShopHere from '@/components/ShopHere.vue'
 import NewsHere from '@/components/NewsHere.vue'
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    // 2. Use createWebHashHistory instead of createWebHistory
+    history: createWebHashHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',
@@ -33,9 +35,7 @@ const router = createRouter({
             name: 'contact-me',
             component: ContactMe,
         },
-
     ],
 })
 
 export default router
-
