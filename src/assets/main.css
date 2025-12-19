@@ -1,0 +1,21 @@
+/* Clean Reset */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    /* Removed display: flex to allow normal document flow */
+    background-color: #1a1a1a; /* Fallback color */
+}
+
+#app {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Base link styles */
+a {
+    text-decoration: none;
+    color: hsla(160, 100%, 37%, 1);
+    transition: 0.4s;
+}

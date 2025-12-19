@@ -1,0 +1,54 @@
+{
+  "products": [
+    {
+      "id": "beginners-box-1",
+      "name": "HEROES JOURNEY BEGINNER DECK",
+      "price": 25.99,
+      "currency": "USD",
+      "tagline": "The *Dwarzian Distortion* Booster Box is the perfect entry point for new players looking to dive into the world of strategic card battles. Each pack includes balanced cards and easy-to-learn mechanics designed to help beginners build competitive decks right from the start.  \n",
+      "description": "Includes starter deck, rulebook, and quick-start guide.",
+      "image": "images/beginbox.png",
+      "buttonLabel": "QUICK ADD",
+      "inStock": true
+    },
+    {
+      "id": "beginners-box-2",
+      "name": "DISTORTED OBLIVION BOOSTER DECK",
+      "price": 5.99,
+      "currency": "USD",
+      "tagline": "Kickstart your journey into *Dwarzian Distortion* with a single Booster Pack featuring a curated mix of beginner-friendly cards. Each pack offers new heroes, spells, and strategies to help you strengthen your deck and master the art of distortion one battle at a time.  \n",
+      "description": "Includes 10 trading cards and 5 Distortion Crystal Shard trading cards.",
+      "image": "images/cardpack.png",
+      "buttonLabel": "QUICK ADD",
+      "inStock": true
+    },
+    {
+      "id": "beginners-box-3",
+      "name": "DISTORTION BATTLE BOX SET",
+      "price": 35.99,
+      "currency": "USD",
+      "tagline": "Welcome to the official universe of Dwarzian Distortion.",
+      "description": "Includes starter deck, rulebook, and quick-start guide.",
+      "image": "images/boosterbox.png",
+      "buttonLabel": "QUICK ADD",
+      "inStock": true
+    },
+    {
+      "id": "beginners-box-4",
+      "name": "BEGINNERS BOX",
+      "price": 55.99,
+      "currency": "USD",
+      "tagline": "Welcome to the official universe of Dwarzian Distortion.",
+      "description": "Includes starter deck, rulebook, and quick-start guide.",
+      "image": "images/bigbox.png",
+      "buttonLabel": "QUICK ADD",
+      "inStock": true
+    }
+  ],
+  "layout": {
+    "backgroundColor": "#f7941d",
+    "columns": 2,
+    "cardSpacing": 48
+  }
+}
+
